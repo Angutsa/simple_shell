@@ -1,26 +1,35 @@
 #include "main.h"
 
 /**
-  * get_user_input - gets the user's input from stdin
+  * get_user_input - gets the user's input
+  * Return: the text typed in by the user and stripped of the newline
+  * character, or NULL on error
   */
-void get_user_input()
+char *get_user_input(void)
 {
-	size_t x = 1;
-	int n = 0;
 	char *input = NULL;
+	int n = 0;
+	size_t x = 0;
 
 	input = malloc(sizeof(char) * x);
 	if (input == NULL)
-		return (-1);
+	{
+		perror("./hsh");
+		return (NULL);
+	}
 
-	printf("$");
+	printf("#cisfun$ ");
 
 	n = getline(&input, &x, stdin);
 	if (n == -1)
-		printf("Error!\n");
+	{
+		perror("./hsh");
+		return (NULL);
+	}
 
-	printf("%s", input);
+	/* Strip newline character */
+	if (input[n - 1] == '\n')
+		input[n - 1] = '\0';
 
-	free(input);
-	return (0);
+	return (input);
 }

@@ -11,8 +11,11 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
+char *get_user_input(void);
+void get_arguments(char **arguments, char *input);
+
+/**** OLD ****/
 void start_simple_shell();
-void get_user_input();
 void fork_wait_exec();
 char **separate_string(char *s);
 char **create_argv(char *argv);
