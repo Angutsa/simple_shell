@@ -4,7 +4,7 @@ extern char **environ;
 
 /**
   * _getenv - replicates the function of getenv
-  * @entry: variable
+  * @name: name of the variable to get
   * Return: variable itself (name & value) or NULL on fail
   */
 char *_getenv(const char *name)
@@ -19,7 +19,7 @@ char *_getenv(const char *name)
 		j = 0;
 		for(;;)
 		{
-			if (variable[j] == '=')
+			if (variable[j] == '=' && entry[j] == '\0')
 				return (variable);
 
 			if (entry[j] != variable[j])
