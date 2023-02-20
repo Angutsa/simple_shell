@@ -17,5 +17,6 @@ void fork_wait_exec();
 char **separate_string(char *s);
 char **create_argv(char *argv);
 char *_getenv(const char *name);
+int _unsetenv(const char *name);
 
 #endif
