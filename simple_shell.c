@@ -2,30 +2,33 @@
 
 /**
   * main - program mimics a simple shell
-  * Return: 0 on sucess else -1
+  * @argc: argument count
+  * @argv: argument vector
+  * @env: environment variables
+  * Return: 0 on success else -1
   */
-int main(int argc, char **argv, char **env)
+int main()
 {
-	size_t x = 0;
-	int n = 0, words = 0, i = 0, status;
-	char *input = NULL, *delim = " ";
-	char *arguments[64];
-	int tmp;
+	int z, status;
+	char *input = "", *arguments[64];
 	pid_t mypid;
 
-	for(;;)
+	for (;;)
 	{
-		input = get_user_input();
-		if (input[0] == '\0')
+		printf("cisfun$ ");
+		z = get_arguments(arguments, input);
+		if (z == -1)
+		{
+			printf("\n");
+			break;
+		}
+		else if (z == 2 || z == 1)
+		{
 			continue;
+		}
 
-		/* TODO: Handle EOF */
-	
-		get_arguments(arguments, input);
-		
-		/* Execute command in a child process */
 		mypid = fork();
-		if(mypid == -1)
+		if (mypid == -1)
 		{
 			perror("./hsh");
 			return (-1);
@@ -33,9 +36,10 @@ int main(int argc, char **argv, char **env)
 
 		if (mypid == 0)
 		{
-			if(execve(arguments[0], arguments, NULL) == -1)
+			if (execve(arguments[0], arguments, NULL) == -1)
 			{
 				perror("./hsh");
+				exit(EXIT_FAILURE);
 			}
 		}
 		else
@@ -43,7 +47,5 @@ int main(int argc, char **argv, char **env)
 			wait(&status);
 		}
 	}
-
-	free(input);
 	return (0);
 }

@@ -1,35 +1,48 @@
 #include "main.h"
 
 /**
-  * get_user_input - gets the user's input
-  * Return: the text typed in by the user and stripped of the newline
-  * character, or NULL on error
+  * get_arguments - reads user input and generates command-line arguments
+  * @arguments: pointer to arguments string
+  * @input: user input
+  * Return: 0 on success, -1 on EOF, 1 on empty entry, 2 on error
   */
-char *get_user_input(void)
+int get_arguments(char **arguments, char *input)
 {
-	char *input = NULL;
-	int n = 0;
+	char *delim = " ";
+	int n = 0, i;
 	size_t x = 0;
 
-	input = malloc(sizeof(char) * x);
-	if (input == NULL)
+	n = getline(&input, &x, stdin);
+	if (input[0] == '\0')
 	{
-		perror("./hsh");
-		return (NULL);
+		return (-1);
 	}
 
-	printf("#cisfun$ ");
-
-	n = getline(&input, &x, stdin);
 	if (n == -1)
 	{
 		perror("./hsh");
-		return (NULL);
+		return (2);
 	}
 
 	/* Strip newline character */
 	if (input[n - 1] == '\n')
 		input[n - 1] = '\0';
 
-	return (input);
+	if (input[0] == '\0')
+	{
+		return (1);
+	}
+
+	/* Get arguments*/
+	arguments[0] = strtok(input, delim);
+	i = 1;
+	for (;;)
+	{
+		arguments[i] = strtok(NULL, delim);
+		if (arguments[i] == NULL)
+			break;
+		i++;
+	}
+
+	return (0);
 }
