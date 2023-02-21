@@ -14,9 +14,7 @@ int get_arguments(char **arguments, char *input)
 
 	n = getline(&input, &x, stdin);
 	if (input[0] == '\0')
-	{
 		return (-1);
-	}
 
 	if (n == -1)
 	{
@@ -25,13 +23,11 @@ int get_arguments(char **arguments, char *input)
 	}
 
 	/* Strip newline character */
-	if (input[n - 1] == '\n')
-		input[n - 1] = '\0';
+	if (input[n - i] == '\n')
+		input[n - i] = '\0';
 
 	if (input[0] == '\0')
-	{
 		return (1);
-	}
 
 	/* Get arguments*/
 	arguments[0] = strtok(input, delim);
@@ -43,6 +39,5 @@ int get_arguments(char **arguments, char *input)
 			break;
 		i++;
 	}
-
 	return (0);
 }

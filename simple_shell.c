@@ -2,12 +2,12 @@
 
 /**
   * main - program mimics a simple shell
-  * @argc: argument count
-  * @argv: argument vector
-  * @env: environment variables
+  * argc: argument count
+  * argv: argument vector
+  * env: environment variables
   * Return: 0 on success else -1
   */
-int main()
+int main(void)
 {
 	int z, status;
 	char *input = "", *arguments[64];
@@ -26,6 +26,7 @@ int main()
 		{
 			continue;
 		}
+		input = "";
 
 		mypid = fork();
 		if (mypid == -1)
