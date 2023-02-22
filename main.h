@@ -15,6 +15,6 @@
 
 #include "printf.h"
 
-int get_arguments(char **arguments, char *input);
+int get_arguments(char **arguments, char *input, char *progname);
 
 #endif

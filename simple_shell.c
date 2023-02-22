@@ -7,16 +7,16 @@
   * env: environment variables
   * Return: 0 on success else -1
   */
-int main(void)
+int main(int argc, char **argv)
 {
-	int z, status;
-	char *input = "", *arguments[64];
+	int z, status, tmp = argc;
+	char *input = "", *arguments[64], *progname = argv[0];
 	pid_t mypid;
 
 	for (;;)
 	{
-		_printf("cisfun$ ");
-		z = get_arguments(arguments, input);
+		_printf("($) ");
+		z = get_arguments(arguments, input, progname);
 		if (z == -1)
 		{
 			_printf("\n");
@@ -31,7 +31,7 @@ int main(void)
 		mypid = fork();
 		if (mypid == -1)
 		{
-			perror("./hsh");
+			perror(progname);
 			return (-1);
 		}
 
@@ -39,7 +39,7 @@ int main(void)
 		{
 			if (execve(arguments[0], arguments, NULL) == -1)
 			{
-				perror("./hsh");
+				perror(progname);
 				exit(EXIT_FAILURE);
 			}
 		}

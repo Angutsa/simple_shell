@@ -6,7 +6,7 @@
   * @input: user input
   * Return: 0 on success, -1 on EOF, 1 on empty entry, 2 on error
   */
-int get_arguments(char **arguments, char *input)
+int get_arguments(char **arguments, char *input, char *progname)
 {
 	char *delim = " ";
 	int n = 0, i;
@@ -18,7 +18,7 @@ int get_arguments(char **arguments, char *input)
 
 	if (n == -1)
 	{
-		perror("./hsh");
+		perror(progname);
 		return (2);
 	}
 
