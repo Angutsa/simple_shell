@@ -15,11 +15,11 @@ int main(void)
 
 	for (;;)
 	{
-		printf("cisfun$ ");
+		_printf("cisfun$ ");
 		z = get_arguments(arguments, input);
 		if (z == -1)
 		{
-			printf("\n");
+			_printf("\n");
 			break;
 		}
 		else if (z == 2 || z == 1)

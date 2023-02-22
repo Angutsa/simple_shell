@@ -11,6 +11,9 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <signal.h>
+#include <stdarg.h>
+
+#include "printf.h"
 
 int get_arguments(char **arguments, char *input);
 

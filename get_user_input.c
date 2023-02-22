@@ -23,6 +23,7 @@ int get_arguments(char **arguments, char *input)
 	}
 
 	/* Strip newline character */
+	i = 1;
 	if (input[n - i] == '\n')
 		input[n - i] = '\0';
 
