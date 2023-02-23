@@ -13,8 +13,6 @@
 #include <signal.h>
 #include <stdarg.h>
 
-#include "printf.h"
-
 /** Structs **/
 /**
   * struct path - struct for a directory in PATH
@@ -32,5 +30,6 @@ char *_getenv(const char *name, char **env);
 struct path *link_path(char **env);
 char *_strncat(char *dest, char *src);
 char *find_command(char *command, struct path *path_head);
+void _printf(char *str);
 
 #endif
