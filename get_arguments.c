@@ -1,29 +1,26 @@
 #include "main.h"
+#include <errno.h>
 
 /**
   * get_arguments - reads user input and generates command-line arguments
   * @arguments: pointer to arguments string
   * @progname: name of the program
-  * Return: 0 on success, -1 on EOF, 1 on empty entry, 2 on error
+  * Return: 0 on success, -1 on EOF, 1 on empty entry
   */
 int get_arguments(char **arguments, char *progname)
 {
-	char *delim = " ", *input = NULL;
+	char *delim = " ", *input = " ";
 	int n = 0, i;
 	size_t x = 0;
+	errno = 0;
 
 	n = getline(&input, &x, stdin);
-	if (input[0] == '\0')
-	{
-		free(input);
-		return (-1);
-	}
-
 	if (n == -1)
 	{
-		input = NULL;
-		perror(progname);
-		return (2);
+		if (errno != 0)
+			perror(progname);
+		free(input);
+		return (-1);
 	}
 
 	/* Strip newline character */
