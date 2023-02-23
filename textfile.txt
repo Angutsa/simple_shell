@@ -1,18 +1,24 @@
-AUTHORS
-README.md
-_putchar.c
-a.out
-convert_c.c
-convert_d.c
-convert_s.c
-get_user_input.c
-handlers.c
-hold
-hsh
-main.h
-output.txt
-printf.c
-printf.h
-simple_shell.c
-testrun
-textfile.txt
+/usr/local/sbin:
+/usr/local/bin:
+/usr/sbin:
+/usr/bin:
+/sbin:
+/bin:
+/usr/games:
+/usr/local/games:
+/usr/lib/wsl/lib:
+/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu20.04onWindows_2004.2022.8.0_x64__79rhkp1fndgsc:
+/mnt/c/Program Files/Common Files/Oracle/Java/javapath:
+/mnt/c/Program Files/Microsoft/jdk-11.0.12.7-hotspot/bin:
+/mnt/c/Windows/system32:
+/mnt/c/Windows:
+/mnt/c/Windows/System32/Wbem:
+/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:
+/mnt/c/Windows/System32/OpenSSH/:
+/mnt/c/Program Files/dotnet/:
+/mnt/c/Program Files/Git/cmd:
+/mnt/c/HashiCorp/Vagrant/bin:
+/mnt/c/Users/Toshiba/AppData/Local/Microsoft/WindowsApps:
+/mnt/c/Users/Toshiba/.dotnet/tools:
+/mnt/c/Users/Toshiba/AppData/Local/GitHubDesktop/bin:
+/snap/bin

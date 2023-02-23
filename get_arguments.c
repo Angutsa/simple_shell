@@ -4,6 +4,7 @@
   * get_arguments - reads user input and generates command-line arguments
   * @arguments: pointer to arguments string
   * @input: user input
+  * @progname: name of the program
   * Return: 0 on success, -1 on EOF, 1 on empty entry, 2 on error
   */
 int get_arguments(char **arguments, char *input, char *progname)

@@ -15,6 +15,22 @@
 
 #include "printf.h"
 
+/** Structs **/
+/**
+  * struct path - struct for a directory in PATH
+  * @directory: directory in PATH
+  * @next: pointer to the next directory
+  */
+struct path
+{
+	char *directory;
+	struct path *next;
+};
+
 int get_arguments(char **arguments, char *input, char *progname);
+char *_getenv(const char *name, char **env);
+struct path *link_path(char **env);
+char *_strncat(char *dest, char *src);
+char *find_command(char *command, struct path *path_head);
 
 #endif
