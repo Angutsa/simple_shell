@@ -3,22 +3,25 @@
 /**
   * get_arguments - reads user input and generates command-line arguments
   * @arguments: pointer to arguments string
-  * @input: user input
   * @progname: name of the program
   * Return: 0 on success, -1 on EOF, 1 on empty entry, 2 on error
   */
-int get_arguments(char **arguments, char *input, char *progname)
+int get_arguments(char **arguments, char *progname)
 {
-	char *delim = " ";
+	char *delim = " ", *input = NULL;
 	int n = 0, i;
 	size_t x = 0;
 
 	n = getline(&input, &x, stdin);
 	if (input[0] == '\0')
+	{
+		free(input);
 		return (-1);
+	}
 
 	if (n == -1)
 	{
+		input = NULL;
 		perror(progname);
 		return (2);
 	}
@@ -29,7 +32,10 @@ int get_arguments(char **arguments, char *input, char *progname)
 		input[n - i] = '\0';
 
 	if (input[0] == '\0')
+	{
+		free(input);
 		return (1);
+	}
 
 	/* Get arguments*/
 	arguments[0] = strtok(input, delim);

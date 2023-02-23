@@ -22,6 +22,12 @@ char *_strncat(char *str1, char *str2)
 
 	len++;
 	dest = malloc(sizeof(char) * len);
+	if (dest == NULL)
+	{
+		perror("Error!");
+		exit(EXIT_FAILURE);
+	}
+
 
 	for (n = 0, b = 0; str1[n] != '\0'; n++, b++)
 	{

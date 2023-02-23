@@ -25,7 +25,7 @@ struct path
 	struct path *next;
 };
 
-int get_arguments(char **arguments, char *input, char *progname);
+int get_arguments(char **arguments, char *progname);
 char *_getenv(const char *name, char **env);
 struct path *link_path(char **env);
 char *_strncat(char *dest, char *src);
