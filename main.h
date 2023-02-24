@@ -54,6 +54,29 @@ typedef struct liststr
 	struct liststr *next;
 } list_t;
 
+/**
+ *struct passinfo - contains pseudo-arguements to pass into a function,
+ *					allowing uniform prototype for function pointer struct
+ *@arg: a string generated from getline containing arguements
+ *@argv: an array of strings generated from arg
+ *@path: a string path for the current command
+ *@argc: the argument count
+ *@line_count: the error count
+ *@err_num: the error code for exit()s
+ *@linecount_flag: if on count this line of input
+ *@fname: the program filename
+ *@env: linked list local copy of environ
+ *@environ: custom modified copy of environ from LL env
+ *@history: the history node
+ *@alias: the alias node
+ *@env_changed: on if environ was changed
+ *@status: the return status of the last exec'd command
+ *@cmd_buf: address of pointer to cmd_buf, on if chaining
+ *@cmd_buf_type: CMD_type ||, &&, ;
+ *@readfd: the fd from which to read line input
+ *@histcount: the history line number count
+ */
+
 typedef struct passinfo
 {
 	char *arg;
@@ -106,10 +129,29 @@ ssize_t get_input(info_t *);
 int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 
+/* memory_functions */
+char *_memset(char *, char, unsigned int);
+void ffree(char **);
+void *_realloc(void *, unsigned int, unsigned int);
+int bfree(void **);
 
-void start_simple_shell();
-void get_user_input();
-void fork_wait_exec();
+/* more_functions.c */
+int interactive(info_t *);
+int is_delim(char, char *);
+int _isalpha(int);
+int _atoi(char *);
+
+/* more_functions2.c */
+int _erratoi(char *);
+void print_error(info_t *, char *);
+int print_d(int, int);
+char *convert_number(long int, int, int);
+void remove_comments(char *);
+
+
+void start_simple_shell(void);
+void get_user_input(void);
+void fork_wait_exec(void);
 char **separate_string(char *s);
 char **create_argv(char *argv);
 char *_getenv(const char *name);
@@ -134,6 +176,6 @@ struct path *link_path(char **env);
 char *_strncat(char *dest, char *src);
 char *find_command(char *command, struct path *path_head);
 void _printf(char *str);
->>>>>>> b2805c5178b046a8a90599f7acf2bb5ab503f07b
+
 
 #endif
