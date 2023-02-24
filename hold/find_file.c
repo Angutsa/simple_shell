@@ -1,4 +1,4 @@
-#include "main.h"
+#include "../main.h"
 
 /**
   * main - looks for files in the current path

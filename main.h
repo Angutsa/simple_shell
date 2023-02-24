@@ -14,6 +14,7 @@
 #include <stdarg.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void start_simple_shell();
 void get_user_input();
 void fork_wait_exec();
@@ -42,5 +43,25 @@ int shellby_help(char **args, char __attribute__((__unused__)) **front);
 
 int get_arguments(char **arguments, char *input);
 >>>>>>> 05b7573c58d2b6de4649e2ee5ac2e75fa9f2276d
+=======
+/** Structs **/
+/**
+  * struct path - struct for a directory in PATH
+  * @directory: directory in PATH
+  * @next: pointer to the next directory
+  */
+struct path
+{
+	char *directory;
+	struct path *next;
+};
+
+int get_arguments(char **arguments, char *progname);
+char *_getenv(const char *name, char **env);
+struct path *link_path(char **env);
+char *_strncat(char *dest, char *src);
+char *find_command(char *command, struct path *path_head);
+void _printf(char *str);
+>>>>>>> b2805c5178b046a8a90599f7acf2bb5ab503f07b
 
 #endif
