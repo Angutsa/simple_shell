@@ -10,7 +10,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <signal.h>
+#include <stdarg.h>
 
+<<<<<<< HEAD
 void start_simple_shell();
 void get_user_input();
 void fork_wait_exec();
@@ -34,5 +37,10 @@ int shellby_exit(char **args, char **front);
 int shellby_cd(char **args, char __attribute__((__unused__)) **front);
 int shellby_help(char **args, char __attribute__((__unused__)) **front);
 
+=======
+#include "printf.h"
+
+int get_arguments(char **arguments, char *input);
+>>>>>>> 05b7573c58d2b6de4649e2ee5ac2e75fa9f2276d
 
 #endif

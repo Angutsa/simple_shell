@@ -1,26 +1,44 @@
 #include "main.h"
 
 /**
-  * get_user_input - gets the user's input from stdin
+  * get_arguments - reads user input and generates command-line arguments
+  * @arguments: pointer to arguments string
+  * @input: user input
+  * Return: 0 on success, -1 on EOF, 1 on empty entry, 2 on error
   */
-void get_user_input()
+int get_arguments(char **arguments, char *input)
 {
-	size_t x = 1;
-	int n = 0;
-	char *input = NULL;
-
-	input = malloc(sizeof(char) * x);
-	if (input == NULL)
-		return (-1);
-
-	printf("$");
+	char *delim = " ";
+	int n = 0, i;
+	size_t x = 0;
 
 	n = getline(&input, &x, stdin);
+	if (input[0] == '\0')
+		return (-1);
+
 	if (n == -1)
-		printf("Error!\n");
+	{
+		perror("./hsh");
+		return (2);
+	}
 
-	printf("%s", input);
+	/* Strip newline character */
+	i = 1;
+	if (input[n - i] == '\n')
+		input[n - i] = '\0';
 
-	free(input);
+	if (input[0] == '\0')
+		return (1);
+
+	/* Get arguments*/
+	arguments[0] = strtok(input, delim);
+	i = 1;
+	for (;;)
+	{
+		arguments[i] = strtok(NULL, delim);
+		if (arguments[i] == NULL)
+			break;
+		i++;
+	}
 	return (0);
 }
