@@ -31,5 +31,6 @@ struct path *link_path(char **env);
 char *_strncat(char *dest, char *src);
 char *find_command(char *command, struct path *path_head);
 void _printf(char *str);
+void errprintf(char *str);
 
 #endif

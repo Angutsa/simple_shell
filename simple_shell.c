@@ -24,11 +24,13 @@ int main(int argc, char **argv, char **env)
 
 	for (;;)
 	{
-		_printf("($) ");
+		if (isatty(STDIN_FILENO))
+			_printf("($) ");
 		z = get_arguments(arguments, argv[0]);
 		if (z == -1)
 		{
-			_printf("\n");
+			if (isatty(STDIN_FILENO))
+				_printf("\n");
 			break;
 		}
 		else if (z == 1 || z == 2)
