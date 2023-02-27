@@ -95,10 +95,11 @@ void cleanup_args(char *arguments[])
 	int i;
 
 	/** Frees arguments since it's pointers were realloced by getline **/
-	for (i = 0; arguments[i] != NULL; i++)
+/**	for (i = 0; arguments[i] != NULL; i++)
 	{
 		free(arguments[i]);
-	}
+	}**/
+	free(arguments[0]);
 }
 
 /**
