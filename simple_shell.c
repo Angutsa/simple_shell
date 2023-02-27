@@ -92,7 +92,7 @@ void execute_command(char *progname, char *arguments[], char **env)
   */
 void cleanup_args(char *arguments[])
 {
-	int i;
+/**	int i; **/
 
 	/** Frees arguments since it's pointers were realloced by getline **/
 /**	for (i = 0; arguments[i] != NULL; i++)
