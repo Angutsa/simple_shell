@@ -1,7 +1,8 @@
 #include "main.h"
 
+#define MAX_ARGS 100
+
 void execute_command(char *progname, char *arguments[], char **env);
-void cleanup_args(char *arguments[]);
 void cleanup_path(struct path *node);
 
 /**
@@ -14,18 +15,17 @@ void cleanup_path(struct path *node);
 int main(int argc, char **argv, char **env)
 {
 	int z, tmp = argc;
-	char *arguments[100];
+	char *arguments[MAX_ARGS];
 	struct path *path_head = NULL;
 
 	tmp++; /** placeholder **/
-
-	/** initialise path linked list **/
 	path_head = link_path(env);
 
 	for (;;)
 	{
 		if (isatty(STDIN_FILENO))
 			_printf("($) ");
+
 		z = get_arguments(arguments, argv[0]);
 		if (z == -1)
 		{
@@ -39,17 +39,16 @@ int main(int argc, char **argv, char **env)
 		}
 
 		/** check if command exists **/
-		arguments[0] = find_command(arguments[0], path_head);
-		if (arguments[0] == NULL)
+		if (find_command(arguments[0], path_head) == NULL)
 		{
 			perror(argv[0]);
-			cleanup_args(arguments);
 			continue;
 		}
-
 		execute_command(argv[0], arguments, env);
+
+		if (arguments[0] != NULL)
+			free(arguments[0]);
 	}
-	cleanup_args(arguments);
 	cleanup_path(path_head);
 	return (0);
 }
@@ -84,22 +83,6 @@ void execute_command(char *progname, char *arguments[], char **env)
 	{
 		wait(&status);
 	}
-}
-
-/**
-  * cleanup_args - frees memory allocated to args internally
-  * @arguments: array of pointer to the argument strings
-  */
-void cleanup_args(char *arguments[])
-{
-/**	int i; **/
-
-	/** Frees arguments since it's pointers were realloced by getline **/
-/**	for (i = 0; arguments[i] != NULL; i++)
-	{
-		free(arguments[i]);
-	}**/
-	free(arguments[0]);
 }
 
 /**
