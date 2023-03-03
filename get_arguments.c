@@ -10,6 +10,7 @@
 int get_arguments(char **arguments, char *progname)
 {
 	char *delim = " ", *input = NULL;
+    /* rename n to result */
 	int n = 0, i;
 	size_t x = 0;
 
@@ -18,6 +19,8 @@ int get_arguments(char **arguments, char *progname)
 	n = getline(&input, &x, stdin);
 	if (n == -1)
 	{
+        /* I don't think you need to check errno because the fact that getline
+           returned -1 means it set errno to something. */
 		if (errno != 0)
 			perror(progname);
 		free(input);
@@ -33,6 +36,8 @@ int get_arguments(char **arguments, char *progname)
 	/* Strip newline character */
 	input[n - 1] = '\0';
 
+    /* Doesn't check if this value is null.
+       Your program crashes if you just press space then enter at the shell. */
 	arguments[0] = strtok(input, delim);
 	i = 1;
 	for (;;)
@@ -42,6 +47,10 @@ int get_arguments(char **arguments, char *progname)
 			break;
 		i++;
 	}
+    /* You didn't free(input).
+       strtok operates on the same memory input is pointing to.
+       So your arguments are all pointers to the memory allocated by getline.
+       Where is it free'd? */
 
 	return (0);
 }

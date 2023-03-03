@@ -39,6 +39,7 @@ struct path *add_to_linked_list(char *variable, struct path *node)
 	if (node == NULL)
 	{
 		node = malloc(sizeof(struct path));
+        /* you don't check that malloc fails here */
 		node->directory = variable;
 		node->next = NULL;
 	}
