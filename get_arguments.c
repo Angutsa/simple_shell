@@ -1,5 +1,9 @@
-#include "main.h"
 #include <errno.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "get_arguments.h"
 
 /**
   * get_arguments - reads user input and generates command-line arguments

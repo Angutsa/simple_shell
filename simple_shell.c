@@ -1,9 +1,14 @@
-#include "main.h"
+#include "simple_shell.h"
+#include "printf.h"
+#include "link_paths.h"
+#include "get_arguments.h"
+#include "find_command.h"
+#include <stddef.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/wait.h>
 
-#define MAX_ARGS 100
-
-void execute_command(char *progname, char *arguments[], char **env);
-void cleanup_path(struct path *node);
 
 /**
   * main - program mimics a simple shell
@@ -49,7 +54,7 @@ int main(int argc, char **argv, char **env)
 		if (arguments[0] != NULL)
 			free(arguments[0]);
 	}
-	cleanup_path(path_head);
+	free_path(path_head);
 	return (0);
 }
 
@@ -86,14 +91,14 @@ void execute_command(char *progname, char *arguments[], char **env)
 }
 
 /**
-  * cleanup_path - frees all memory allocated for the PATH list
+  * free_path - frees all memory allocated for the PATH list
   * @node: head node
   */
-void cleanup_path(struct path *node)
+void free_path(struct path *node)
 {
 	if (node == NULL)
 		return;
 
-	cleanup_path(node->next);
+	free_path(node->next);
 	free(node);
 }

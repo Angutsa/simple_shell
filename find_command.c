@@ -1,5 +1,9 @@
-#include "main.h"
-#include <dirent.h>
+#include "find_command.h"
+#include "strncat.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stddef.h>
+#include <stdlib.h>
 #include <errno.h>
 
 /**

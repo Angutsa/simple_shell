@@ -1,6 +1,7 @@
-#include "main.h"
-
-struct path *add_to_linked_list(char *variable, struct path *node);
+#include "link_paths.h"
+#include "get_env.h"
+#include <stddef.h>
+#include <stdlib.h>
 
 
 /**

@@ -1,4 +1,8 @@
-#include "main.h"
+#include "strncat.h"
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 /**
  * _strncat - concatenates two strings
  * @str1: string 1

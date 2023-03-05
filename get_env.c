@@ -1,4 +1,5 @@
-#include "main.h"
+#include "get_env.h"
+#include <stddef.h>
 
 /**
   * _getenv - replicates the function of getenv
